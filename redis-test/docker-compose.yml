@@ -1,22 +1,21 @@
-version: '3.8'
+version: '3.9'
 
 services:
   redis:
-    image: "redis:latest"
-    container_name: redis
+    image: redis:7.2.5
     ports:
-      - "6380:6379"
-
+      - "6379:6379"
+  
   publisher:
-    build: ./publisher
-    container_name: publisher
-    depends_on:
-      - redis
+    build:
+      context: ./publisher
     ports:
       - "8000:8000"
+    depends_on:
+      - redis
 
   subscriber:
-    build: ./subscriber
-    container_name: subscriber
+    build:
+      context: ./subscriber
     depends_on:
       - redis

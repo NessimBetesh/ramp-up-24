@@ -2,7 +2,7 @@ import redis
 import json
 
 def message_handler(message):
-    print(f"Received: {json.loads(message['data'])}")
+    print(f"Received: {message['data']}")
 
 r = redis.Redis(host='redis', port=6379, db=0)
 p = r.pubsub()
